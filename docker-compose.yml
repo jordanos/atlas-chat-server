@@ -9,7 +9,7 @@ services:
       - ./server:/app
       - atlas-logs:/var/log
     ports:
-      - "8000:8000"
+      - "9500:8000"
     env_file:
       - ".env"
     depends_on:
@@ -32,7 +32,7 @@ services:
     volumes:
       - atlas-db:/var/lib/postgresql/data/
     ports:
-      - "5400:5432"
+      - "5401:5432"
     networks:
       - atlas-network
 
