@@ -28,8 +28,10 @@ class RoomSerializer(serializers.ModelSerializer):
         return super().update(instance, validated_data)
 
 
-class JoinRoomSerializer(serializers.Serializer):
-    username = serializers.CharField(required=True)
+class JoinRoomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Room
+        fields = ["users"]
 
     def update(self, instance: Room, validated_data):
         users = validated_data["users"]
@@ -42,7 +44,7 @@ class JoinRoomSerializer(serializers.Serializer):
 
 
 class AddUserSerializer(serializers.Serializer):
-    username = serializers.CharField(max_length=100)
+    username = serializers.CharField(max_length=100, required=True)
 
     def validate(self, data):
         username = data.get("username")
@@ -73,14 +75,12 @@ class LeaveRoomSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Room
-        fields = "__all__"
-        read_only_fields = ["id", "updated_at", "created_at"]
+        fields = ["users"]
 
     def update(self, instance: Room, validated_data):
-        users_ids = validated_data["users"]
+        users = validated_data["users"]
         room = instance
-        for user_id in users_ids:
-            user = User.objects.get(id=user_id)
+        for user in users:
             room.users.remove(user)
         return instance
 

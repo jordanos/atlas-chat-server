@@ -1,1 +1,6 @@
-CHAT_TYPES = ["private", "public"]
+from enum import Enum
+
+
+class ChatTypes(Enum):
+    private = "private"
+    public = "public"

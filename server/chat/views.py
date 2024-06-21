@@ -1,4 +1,5 @@
 from chat.utils import subscribe_to_room
+from common.options import ChatTypes
 from common.permissions import IsOwner
 from django_filters import rest_framework as filters
 from rest_framework import generics, serializers
@@ -18,10 +19,32 @@ from .serializers import (
 )
 
 
+class RoomFilter(filters.FilterSet):
+    room_type = filters.CharFilter(field_name="type", method="filter_by_room_type")
+
+    class Meta:
+        model = Room
+        fields = ["room_type"]
+
+    def filter_by_room_type(self, queryset, name, value):
+        user = self.request.user
+        # if filter is out of the filtering options return unfiltered query
+        if value not in set(t.value for t in ChatTypes):
+            return queryset
+        value = ChatTypes(value)
+        queryset = queryset.filter(type=value.value)
+        if value == ChatTypes.private:
+            # filter private rooms the user is part of
+            queryset = queryset.filter(users__in=[user])
+        return queryset
+
+
 class RoomList(generics.ListCreateAPIView):
     queryset = Room.objects.all().order_by("-id")
     serializer_class = RoomSerializer
     permission_classes = [IsAuthenticated]
+    filter_backends = [filters.DjangoFilterBackend]
+    filterset_class = RoomFilter
 
     def get_queryset(self):
         user = self.request.user

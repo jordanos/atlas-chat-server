@@ -1,4 +1,4 @@
-from common.options import CHAT_TYPES
+from common.options import ChatTypes
 from django.db import models
 from users.models import User
 
@@ -8,7 +8,10 @@ class Room(models.Model):
     name = models.CharField(max_length=25, blank=False, null=False, unique=True)
     users = models.ManyToManyField(to=User)
     type = models.CharField(
-        max_length=25, blank=False, null=False, choices=[[t, t] for t in CHAT_TYPES]
+        max_length=25,
+        blank=False,
+        null=False,
+        choices=[[t.value, t.value] for t in ChatTypes],
     )
     owner = models.ForeignKey(
         to=User, related_name="room_owners", on_delete=models.DO_NOTHING, null=False
