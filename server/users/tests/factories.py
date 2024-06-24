@@ -10,7 +10,6 @@ class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = User
 
-    id = 1
     username = fake.name()
     email = factory.LazyAttribute(lambda obj: f"{obj.username}@example.com")
     first_name = fake.name()
