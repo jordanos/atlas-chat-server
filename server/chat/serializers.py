@@ -1,8 +1,6 @@
-import channels.layers
-from asgiref.sync import async_to_sync
 from chat.utils import subscribe_to_room
 from rest_framework import serializers
-from users.models import User, UserChannel
+from users.models import User
 
 from .models import Message, Room
 

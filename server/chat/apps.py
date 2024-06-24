@@ -6,4 +6,4 @@ class ChatConfig(AppConfig):
     name = "chat"
 
     def ready(self) -> None:
-        from . import signals
+        from . import signals  # noqa

@@ -92,7 +92,7 @@ class AddUser(generics.CreateAPIView):
                 raise serializers.ValidationError(
                     {
                         "non_field_errors": [
-                            "Room max user limit(2) reached, Create a public room if you want to chat with more users."
+                            """Room max user limit(2) reached, Create a public room if you want to chat with more users."""  # noqa
                         ]
                     }
                 )
@@ -159,7 +159,6 @@ class MessageList(generics.ListCreateAPIView):
     filterset_class = MessagesFilter
 
     def get_queryset(self):
-        user = self.request.user
         # TODO: filter messages based on current user
         return super().get_queryset()
 

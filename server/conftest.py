@@ -13,7 +13,7 @@ register(MessageFactory)
 def user1(user_factory):
     # Create user with username=user1
     user1 = user_factory.create(username="user1", id=1)
-    # To use custom password, use the password kwarg and makepassword function from django
+    # To use custom password, use the password kwarg and makepassword function
     # user1 = user_factory.create(username="user1", make_password("custom_pass"))
     return user1
 
