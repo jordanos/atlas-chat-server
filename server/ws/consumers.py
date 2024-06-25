@@ -41,17 +41,17 @@ class ChatConsumer(AsyncWebsocketConsumer):
         # validate the request and create a message
         # requests should include: type[models], action[cud], data
         user = self.scope["user"]
-        type = data.get("type", None)
+        module = data.get("type", None)
         action = data.get("action", None)
         data = data.get("data", None)
-        params = [type, action, data]
+        params = [module, action, data]
         if None in params:
             # todo: handdle errors
             await self.send(text_data=json.dumps({"error": "validation error"}))
             return
-        # based on type and action send message to appropriate channel
+        # based on module and action send message to appropriate channel
         # TODO: validate data
-        if type == "message" and action == "create":
+        if module == "message" and action == "create":
             # since creating a message triggers a signal for broadcasting the message
             # to all channels in the message_room
             # we are certain the other users will recieve the message instantly
