@@ -7,13 +7,14 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
-COPY requirements.txt ./
+COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY ["./Makefile", ".flake8", ".pre-commit-config.yml", "/app/"]
-COPY ./server .
+COPY server/ ./server/
+COPY ["Makefile", ".flake8", "./"]
+COPY mypy.ini .
 
-COPY ./entrypoint.sh /
-RUN chmod u+x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+COPY entrypoint.sh .
+RUN chmod u+x ./entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]

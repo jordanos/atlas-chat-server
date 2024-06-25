@@ -1,3 +1,7 @@
+# Variables
+VENV_DIR = venv
+PYTHON = $(VENV_DIR)/bin/python
+
 # Install dependencies
 .PHONY: install
 install:
@@ -7,12 +11,13 @@ install:
 # Run lint
 .PHONY: lint
 lint:
-	pre-commit run --all-files
+	mypy server
+	flake8 server
 
 # Run tests
 .PHONY: test
-test: 
-	pytest -v -rs --show-capture=no
+test:
+	cd server && python -m pytest -v -rs --show-capture=no
 
 .PHONY: lint-and-test
 lint-and-test: lint test ;

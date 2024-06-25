@@ -1,4 +1,5 @@
 #!/bin/sh
+cd server
 
 migrate() {
     python manage.py makemigrations

@@ -6,7 +6,7 @@ services:
     container_name: server
     restart: unless-stopped
     volumes:
-      - ./server:/app
+      - ./server/:/app/server
       - atlas-logs:/var/log
     ports:
       - "9500:8000"
