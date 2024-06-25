@@ -11,7 +11,7 @@ jobs:
 
     # TODO(dmu) LOW: Consider using Debian Buster (the same as docker image is based on) if it is easy to do
     runs-on: ubuntu-latest
-    container: python:3.10-slim-buster
+    container: python:3.10
 
     services:
       # TODO(dmu) LOW: This section duplicates services already defined in `docker-compose.yml`.
