@@ -1,5 +1,5 @@
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import BasePermission, IsAuthenticated
 
 from .models import User
 from .serializers import UserSerializer
@@ -8,7 +8,7 @@ from .serializers import UserSerializer
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all().order_by("-id")
     serializer_class = UserSerializer
-    permission_classes = []
+    permission_classes: list[BasePermission] = []
 
     def get_queryset(self):
         order_by = self.request.GET.get("order_by", None)
