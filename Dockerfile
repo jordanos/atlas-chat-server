@@ -11,6 +11,7 @@ COPY requirements.txt ./
 
 RUN pip install -r requirements.txt
 
+COPY ["./Makefile", ".flake8", ".pre-commit-config.yml", "/app/"]
 COPY ./server .
 
 COPY ./entrypoint.sh /

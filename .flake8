@@ -1,0 +1,23 @@
+[flake8]
+max-line-length = 88
+inline-quotes = double
+exclude =
+    .git,
+    __pycache__,
+    .pytest_cache,
+    .mypy_cache,
+    **/static/*,
+    **/media/*,
+    **/migrations/*,
+    build,
+    dist,
+    venv,
+    .venv,
+    env,
+    .env
+ignore =
+    C101,
+    I201,
+    A003,
+    I100
+
