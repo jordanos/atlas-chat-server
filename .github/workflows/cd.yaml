@@ -21,13 +21,13 @@ jobs:
     steps:
       - name: Configure ssh
         env:
-          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-          SSH_HOST: ${{secrets.SSH_HOST}}
-          SSH_USER: ${{secrets.SSH_USER}}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/github
-          chmod 600 ~/.shh/github
+          chmod 600 ~/.ssh/github
           cat >>~/.ssh/github <<END
           Host target
             Hostname $SSH_HOST
