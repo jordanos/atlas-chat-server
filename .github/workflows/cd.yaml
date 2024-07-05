@@ -3,10 +3,10 @@ name: Continues Deployment
 on:
   push:
     branchs:
-      - master
+      - main
 
 concurency:
-  group: master
+  group: main
   cancel-in-progress: true
 
 jobs:
