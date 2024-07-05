@@ -5,7 +5,7 @@ on:
     branchs:
       - main
 
-concurency:
+concurrency:
   group: main
   cancel-in-progress: true
 
