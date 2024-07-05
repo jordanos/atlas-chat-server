@@ -39,4 +39,5 @@ jobs:
       - name: Run deploy
         run: |
           cat ~/.ssh/config
+          echo "$SSH_USER"
           ssh target "cd /usr/share/nginx/atlas-chat/atlas-chat-server && git pull && docker-compose build && docker-compose down && docker-compose up -d"
