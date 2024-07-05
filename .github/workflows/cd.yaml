@@ -32,13 +32,10 @@ jobs:
           Host target
             Hostname $SSH_HOST
             User $SSH_USER
-            IdentityFile ~/.shh/github
+            IdentityFile ~/.ssh/github
             LogLevel ERROR
             StrictHostKeyChecking no
           END
       - name: Run deploy
-        run: |
-          cd ~/.ssh/ && ls -a | grep github
-          shh -i ~/.ssh/github root@shegapps.com
-          ls      
-        # ssh target "cd /usr/share/nginx/atlas-chat/atlas-chat-server && git pull && docker-compose build && docker-compose down && docker-compose up -d"
+        run: |     
+          ssh target "cd /usr/share/nginx/atlas-chat/atlas-chat-server && git pull && docker-compose build && docker-compose down && docker-compose up -d"
