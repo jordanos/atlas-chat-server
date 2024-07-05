@@ -36,3 +36,4 @@ Types of changes
 - Chatting with real-time capabilities
 - Creating private and public rooms
 - Adding users in any group
+- CI/CD
