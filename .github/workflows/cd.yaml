@@ -2,7 +2,7 @@ name: Continues Deployment
 
 on:
   push:
-    branchs:
+    branches:
       - main
 
 concurrency:
