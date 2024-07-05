@@ -38,4 +38,4 @@ jobs:
           END
       - name: Run deploy
         run: |
-          ssh target "cd /usr/share/nginx/atlas-chat/atlas-chat-server && git pull && docker-compose build && docker-compose down && docker-compose up -d"
+          ssh -i ~/.ssh/github $SSH_USER@$SSH_HOST "cd /usr/share/nginx/atlas-chat/atlas-chat-server && git pull && docker-compose build && docker-compose down && docker-compose up -d"
